@@ -9,5 +9,4 @@ public class TelegramClientApplication {
     public static void main(String[] args) {
         SpringApplication.run(TelegramClientApplication.class, args);
     }
-
 }
