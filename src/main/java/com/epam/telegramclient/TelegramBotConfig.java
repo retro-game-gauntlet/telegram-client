@@ -1,20 +1,35 @@
 package com.epam.telegramclient;
 
-import com.pengrad.telegrambot.TelegramBot;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.meta.generics.LongPollingBot;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 @Configuration
 public class TelegramBotConfig {
 
+    @Value("${telegram.bot.name}")
+    private String botName;
     @Value("${telegram.bot.token}")
-    private String telegramBotToken;
+    private String botToken;
 
     @Bean
-    public TelegramBot bot(OnUpdateListener listener) {
-        TelegramBot bot = new TelegramBot(telegramBotToken);
-        bot.setUpdatesListener(listener);
+    public TelegramBotsApi bot(LongPollingBot onUpdateListener) throws TelegramApiException {
+        TelegramBotsApi bot = new TelegramBotsApi(DefaultBotSession.class);
+        bot.registerBot(onUpdateListener);
         return bot;
+    }
+
+    @Bean
+    public String botName() {
+        return botName;
+    }
+
+    @Bean
+    public String botToken() {
+        return botToken;
     }
 }

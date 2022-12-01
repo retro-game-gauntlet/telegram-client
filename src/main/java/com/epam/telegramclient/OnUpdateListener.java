@@ -1,19 +1,31 @@
 package com.epam.telegramclient;
 
-import com.pengrad.telegrambot.UpdatesListener;
-import com.pengrad.telegrambot.model.Update;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
+import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Component
+@RequiredArgsConstructor
 @Slf4j
-public class OnUpdateListener implements UpdatesListener {
+public class OnUpdateListener extends TelegramLongPollingBot {
+
+    private final String botName;
+    private final String botToken;
 
     @Override
-    public int process(List<Update> list) {
-        log.info("Incoming updates: {}", list);
-        return CONFIRMED_UPDATES_ALL;
+    public String getBotUsername() {
+        return botName;
+    }
+
+    @Override
+    public String getBotToken() {
+        return botToken;
+    }
+
+    @Override
+    public void onUpdateReceived(Update update) {
+        log.info(update.getMessage().getText());
     }
 }
