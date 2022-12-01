@@ -1,7 +1,9 @@
-package com.epam.telegramclient;
+package com.epam.telegramclient.business;
 
+import com.epam.telegramclient.business.event.events.UpdateEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -9,10 +11,11 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class OnUpdateListener extends TelegramLongPollingBot {
+public class RggBot extends TelegramLongPollingBot {
 
     private final String botName;
     private final String botToken;
+    private final ApplicationEventPublisher eventPublisher;
 
     @Override
     public String getBotUsername() {
@@ -26,6 +29,6 @@ public class OnUpdateListener extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        log.info(update.getMessage().getText());
+        eventPublisher.publishEvent(new UpdateEvent(this, update));
     }
 }

@@ -1,4 +1,4 @@
-package com.epam.telegramclient;
+package com.epam.telegramclient.business;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
