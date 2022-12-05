@@ -1,6 +1,7 @@
 package com.epam.telegramclient.business.requestresolver;
 
 import com.epam.telegramclient.business.domain.Request;
+import com.epam.telegramclient.tags.Junit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -9,6 +10,7 @@ import static com.epam.telegramclient.factories.MessageFactory.defaultMessage;
 import static com.epam.telegramclient.factories.UpdateFactory.defaultUpdate;
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Junit
 class MessageRequestResolverTest {
 
     private RequestResolver resolver;
