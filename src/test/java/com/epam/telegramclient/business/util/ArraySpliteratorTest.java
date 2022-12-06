@@ -1,11 +1,13 @@
 package com.epam.telegramclient.business.util;
 
+import com.epam.telegramclient.tags.Junit;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Junit
 class ArraySpliteratorTest {
 
     private ArraySpliterator<Integer> arraySpliterator;

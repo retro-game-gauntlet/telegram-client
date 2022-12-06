@@ -3,6 +3,7 @@ package com.epam.telegramclient.business.event.listener;
 import com.epam.telegramclient.business.command.Command;
 import com.epam.telegramclient.business.event.events.UpdateEvent;
 import com.epam.telegramclient.business.requestresolver.RequestResolvers;
+import com.epam.telegramclient.tags.Junit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,6 +19,7 @@ import static com.epam.telegramclient.factories.DefaultRequest.*;
 import static com.epam.telegramclient.factories.UpdateFactory.defaultUpdate;
 import static org.mockito.Mockito.*;
 
+@Junit
 @ExtendWith(MockitoExtension.class)
 class OnUpdateEventMessageCommandListenerTest {
 

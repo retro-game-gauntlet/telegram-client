@@ -1,6 +1,7 @@
 package com.epam.telegramclient.business.command.message;
 
 import com.epam.telegramclient.business.domain.Request;
+import com.epam.telegramclient.tags.Junit;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -12,6 +13,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import static org.mockito.Mockito.verify;
 
+@Junit
 @ExtendWith(MockitoExtension.class)
 class NotFoundMessageCommandTest {
 

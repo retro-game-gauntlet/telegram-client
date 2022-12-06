@@ -1,6 +1,7 @@
 package com.epam.telegramclient.business;
 
 import com.epam.telegramclient.business.event.events.UpdateEvent;
+import com.epam.telegramclient.tags.Junit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 
+@Junit
 @ExtendWith(MockitoExtension.class)
 class RggBotTest {
 

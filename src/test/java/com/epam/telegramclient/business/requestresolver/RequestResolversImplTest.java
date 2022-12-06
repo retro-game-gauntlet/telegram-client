@@ -2,6 +2,7 @@ package com.epam.telegramclient.business.requestresolver;
 
 import com.epam.telegramclient.business.domain.Request;
 import com.epam.telegramclient.business.exception.RequestResolverNotFoundException;
+import com.epam.telegramclient.tags.Junit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,6 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.when;
 
+@Junit
 @ExtendWith(MockitoExtension.class)
 class RequestResolversImplTest {
 

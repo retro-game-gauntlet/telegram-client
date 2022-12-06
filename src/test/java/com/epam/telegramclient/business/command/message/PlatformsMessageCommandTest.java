@@ -2,6 +2,7 @@ package com.epam.telegramclient.business.command.message;
 
 import com.epam.telegramclient.business.command.Command;
 import com.epam.telegramclient.business.domain.Request;
+import com.epam.telegramclient.tags.Junit;
 import com.epam.telegramclient.ui.InlineButtonBuilder;
 import com.epam.telegramclient.web.client.GameServiceCLient;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,6 +19,7 @@ import static com.epam.telegramclient.factories.SendMessageFactory.defaultPlatfo
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+@Junit
 @ExtendWith(MockitoExtension.class)
 class PlatformsMessageCommandTest {
 
