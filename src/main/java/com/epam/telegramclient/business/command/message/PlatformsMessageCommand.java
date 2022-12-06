@@ -19,7 +19,7 @@ import java.util.List;
 
 @Component("/platforms")
 @RequiredArgsConstructor
-public class AllPlatformsMessageCommand implements Command {
+public class PlatformsMessageCommand implements Command {
 
     private final GameServiceCLient gameServiceCLient;
     private final InlineButtonBuilder inlineButtonBuilder;

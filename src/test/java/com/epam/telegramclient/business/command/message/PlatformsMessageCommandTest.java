@@ -19,7 +19,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class AllPlatformsMessageCommandTest {
+class PlatformsMessageCommandTest {
 
     private Command command;
 
@@ -32,7 +32,7 @@ class AllPlatformsMessageCommandTest {
 
     @BeforeEach
     void setUp() {
-        command = new AllPlatformsMessageCommand(gameServiceCLient, inlineButtonBuilder, 1);
+        command = new PlatformsMessageCommand(gameServiceCLient, inlineButtonBuilder, 1);
     }
 
     @Test
