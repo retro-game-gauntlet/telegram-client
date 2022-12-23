@@ -6,5 +6,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public interface Command {
 
+    boolean isApplicableFor(Request request);
+
     void process(TelegramLongPollingBot bot, Request request) throws TelegramApiException;
 }

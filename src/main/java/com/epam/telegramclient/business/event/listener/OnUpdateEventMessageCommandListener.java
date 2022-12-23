@@ -1,6 +1,7 @@
 package com.epam.telegramclient.business.event.listener;
 
 import com.epam.telegramclient.business.command.Command;
+import com.epam.telegramclient.business.command.resolver.CommandResolver;
 import com.epam.telegramclient.business.domain.Request;
 import com.epam.telegramclient.business.event.events.UpdateEvent;
 import com.epam.telegramclient.business.requestresolver.RequestResolvers;
@@ -13,16 +14,13 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
-import java.util.Map;
-
 @Component
 @Slf4j
 @RequiredArgsConstructor
 public class OnUpdateEventMessageCommandListener implements ApplicationListener<UpdateEvent> {
 
-    private final Map<String, Command> messageCommands;
-    private final Command notFoundMessageCommand;
     private final RequestResolvers requestResolvers;
+    private final CommandResolver commandResolver;
 
     @Override
     public void onApplicationEvent(@NonNull UpdateEvent event) {
@@ -34,7 +32,7 @@ public class OnUpdateEventMessageCommandListener implements ApplicationListener<
     }
 
     private void process(TelegramLongPollingBot bot, Request request) {
-        Command messageCommand = messageCommands.getOrDefault(request.command(), notFoundMessageCommand);
+        Command messageCommand = commandResolver.resolve(request);
         try {
             messageCommand.process(bot, request);
         } catch (TelegramApiException e) {

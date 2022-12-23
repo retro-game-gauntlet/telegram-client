@@ -15,10 +15,10 @@ import static org.mockito.Mockito.verify;
 
 @Junit
 @ExtendWith(MockitoExtension.class)
-class NotFoundMessageCommandTest {
+class UnknownMessageCommandTest {
 
     @InjectMocks
-    private NotFoundMessageCommand command;
+    private UnknownMessageCommand command;
 
     @Mock
     private TelegramLongPollingBot bot;

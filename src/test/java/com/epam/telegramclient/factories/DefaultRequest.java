@@ -8,7 +8,7 @@ public class DefaultRequest {
         return new Request(123L, "/platforms");
     }
 
-    public static Request notFoundRequest() {
+    public static Request unknownRequest() {
         return new Request(321L, "/qwe");
     }
 

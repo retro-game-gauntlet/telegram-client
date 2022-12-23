@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@FeignClient(name = "game-service", url = "http://localhost:8081/v1")
+@FeignClient(name = "game-service", url = "http://localhost:8081/")
 public interface GameServiceCLient {
 
-    @GetMapping(value = "/platforms")
+    @GetMapping("v1/platforms")
     Response<List<Platform>> getPlatforms();
 }

@@ -17,13 +17,21 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 
 import java.util.List;
 
-@Component("/platforms")
+/**
+ * Command which response for '/platforms' request
+ */
+@Component
 @RequiredArgsConstructor
 public class PlatformsMessageCommand implements Command {
 
     private final GameServiceCLient gameServiceCLient;
     private final InlineButtonBuilder inlineButtonBuilder;
     private final int platformsButtonsPerRow;
+
+    @Override
+    public boolean isApplicableFor(Request request) {
+        return "/platforms".equalsIgnoreCase(request.command());
+    }
 
     @Override
     @SneakyThrows

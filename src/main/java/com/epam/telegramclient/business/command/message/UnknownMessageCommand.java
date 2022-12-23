@@ -9,8 +9,16 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import static java.lang.String.format;
 
+/**
+ * Default command which used for unknown command
+ */
 @Component
-public class NotFoundMessageCommand implements Command {
+public class UnknownMessageCommand implements Command {
+
+    @Override
+    public boolean isApplicableFor(Request request) {
+        return false;
+    }
 
     @Override
     public void process(TelegramLongPollingBot bot, Request request) throws TelegramApiException {
