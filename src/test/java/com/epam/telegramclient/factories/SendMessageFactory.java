@@ -11,4 +11,8 @@ public class SendMessageFactory {
         response.setReplyMarkup(defaultMarkup());
         return response;
     }
+
+    public static SendMessage defaultMarioSendMessage() {
+        return new SendMessage("123", "Super Mario Bros.");
+    }
 }

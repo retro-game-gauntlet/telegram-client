@@ -56,6 +56,6 @@ public class PlatformsMessageCommand implements Command {
     }
 
     private InlineKeyboardButton createButton(Platform platform) {
-        return inlineButtonBuilder.build(platform.code(), "/" + platform.code() + "/games/random");
+        return inlineButtonBuilder.build(platform.code(), "/platforms/" + platform.code() + "/games/random");
     }
 }
