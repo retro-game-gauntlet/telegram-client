@@ -15,6 +15,8 @@ public class TelegramBotConfig {
     private String botName;
     @Value("${telegram.bot.token}")
     private String botToken;
+    @Value("${telegram.bot.welcome-message}")
+    private String welcomeMessage;
 
     @Bean
     public TelegramBotsApi bot(LongPollingBot onUpdateListener) throws TelegramApiException {
@@ -31,5 +33,10 @@ public class TelegramBotConfig {
     @Bean
     public String botToken() {
         return botToken;
+    }
+
+    @Bean
+    public String welcomeMessage() {
+        return welcomeMessage;
     }
 }
