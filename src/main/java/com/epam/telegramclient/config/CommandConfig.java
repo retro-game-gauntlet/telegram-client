@@ -8,6 +8,6 @@ public class CommandConfig {
 
     @Bean
     public int platformsButtonsPerRow() {
-        return 1;
+        return 5;
     }
 }
