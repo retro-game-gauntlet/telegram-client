@@ -1,5 +1,6 @@
 package com.epam.telegramclient.business;
 
+import com.epam.methodlog.annotation.InputMethodLog;
 import com.epam.telegramclient.business.event.events.UpdateEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,7 @@ public class RggBot extends TelegramLongPollingBot {
     }
 
     @Override
+    @InputMethodLog
     public void onUpdateReceived(Update update) {
         eventPublisher.publishEvent(new UpdateEvent(this, update));
     }

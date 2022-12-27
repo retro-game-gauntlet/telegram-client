@@ -1,5 +1,7 @@
 package com.epam.telegramclient.business.command.resolver;
 
+import com.epam.methodlog.annotation.InputMethodLog;
+import com.epam.methodlog.annotation.OutputMethodLog;
 import com.epam.telegramclient.business.command.Command;
 import com.epam.telegramclient.business.domain.Request;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,8 @@ public class MessageCommandResolver implements CommandResolver {
     private final Command unknownMessageCommand;
 
     @Override
+    @InputMethodLog
+    @OutputMethodLog
     public Command resolve(Request request) {
         return messageCommands.stream()
                 .filter(c -> c.isApplicableFor(request))

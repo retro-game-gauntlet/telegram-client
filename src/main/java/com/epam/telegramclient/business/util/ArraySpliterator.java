@@ -1,5 +1,7 @@
 package com.epam.telegramclient.business.util;
 
+import com.epam.methodlog.annotation.InputMethodLog;
+import com.epam.methodlog.annotation.OutputMethodLog;
 import lombok.RequiredArgsConstructor;
 
 import java.util.ArrayList;
@@ -14,6 +16,8 @@ public class ArraySpliterator<T> {
     private final int piecesSize;
 
     @SafeVarargs
+    @InputMethodLog
+    @OutputMethodLog
     public final List<List<T>> split(T... items) {
         List<T> list = Arrays.stream(items).toList();
 

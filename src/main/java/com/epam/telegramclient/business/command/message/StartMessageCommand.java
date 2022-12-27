@@ -1,5 +1,7 @@
 package com.epam.telegramclient.business.command.message;
 
+import com.epam.methodlog.annotation.InputMethodLog;
+import com.epam.methodlog.annotation.OutputMethodLog;
 import com.epam.telegramclient.business.command.Command;
 import com.epam.telegramclient.business.domain.Request;
 import lombok.RequiredArgsConstructor;
@@ -20,11 +22,14 @@ public class StartMessageCommand implements Command {
     private final String welcomeMessage;
 
     @Override
+    @InputMethodLog
+    @OutputMethodLog
     public boolean isApplicableFor(Request request) {
         return "/start".equalsIgnoreCase(request.command());
     }
 
     @Override
+    @InputMethodLog
     public void process(TelegramLongPollingBot bot, Request request) throws TelegramApiException {
         ReplyKeyboardMarkup markup = buildMarkup();
         SendMessage response = new SendMessage(request.chatId().toString(), welcomeMessage);

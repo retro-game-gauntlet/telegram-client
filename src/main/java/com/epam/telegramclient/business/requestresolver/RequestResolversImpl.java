@@ -1,5 +1,7 @@
 package com.epam.telegramclient.business.requestresolver;
 
+import com.epam.methodlog.annotation.InputMethodLog;
+import com.epam.methodlog.annotation.OutputMethodLog;
 import com.epam.telegramclient.business.domain.Request;
 import com.epam.telegramclient.business.exception.RequestResolverNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,8 @@ public class RequestResolversImpl implements RequestResolvers {
     private final List<RequestResolver> requestResolvers;
 
     @Override
+    @InputMethodLog
+    @OutputMethodLog
     public Request resolve(Update update) {
         return requestResolvers.stream()
                 .filter(resolver -> resolver.isApplicableFor(update))

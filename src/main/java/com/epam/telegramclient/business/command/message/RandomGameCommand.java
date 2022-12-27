@@ -1,5 +1,7 @@
 package com.epam.telegramclient.business.command.message;
 
+import com.epam.methodlog.annotation.InputMethodLog;
+import com.epam.methodlog.annotation.OutputMethodLog;
 import com.epam.telegramclient.business.command.Command;
 import com.epam.telegramclient.business.domain.Request;
 import com.epam.telegramclient.business.event.events.RandomGameSent;
@@ -27,11 +29,14 @@ public class RandomGameCommand implements Command {
     private final ApplicationEventPublisher eventPublisher;
 
     @Override
+    @InputMethodLog
+    @OutputMethodLog
     public boolean isApplicableFor(Request request) {
         return commandPattern.matcher(request.command()).matches();
     }
 
     @Override
+    @InputMethodLog
     public void process(TelegramLongPollingBot bot, Request request) throws TelegramApiException {
         Long chatId = request.chatId();
         String command = request.command();

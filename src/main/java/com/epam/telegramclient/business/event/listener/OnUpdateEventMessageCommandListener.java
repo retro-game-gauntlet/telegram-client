@@ -1,5 +1,6 @@
 package com.epam.telegramclient.business.event.listener;
 
+import com.epam.methodlog.annotation.InputMethodLog;
 import com.epam.telegramclient.business.command.Command;
 import com.epam.telegramclient.business.command.resolver.CommandResolver;
 import com.epam.telegramclient.business.domain.Request;
@@ -23,6 +24,7 @@ public class OnUpdateEventMessageCommandListener implements ApplicationListener<
     private final CommandResolver commandResolver;
 
     @Override
+    @InputMethodLog
     public void onApplicationEvent(@NonNull UpdateEvent event) {
         Update update = event.getUpdate();
         Request request = requestResolvers.resolve(update);

@@ -1,5 +1,7 @@
 package com.epam.telegramclient.business.command.message;
 
+import com.epam.methodlog.annotation.InputMethodLog;
+import com.epam.methodlog.annotation.OutputMethodLog;
 import com.epam.telegramclient.business.command.Command;
 import com.epam.telegramclient.business.domain.Request;
 import com.epam.telegramclient.ui.InlineButtonBuilder;
@@ -8,12 +10,12 @@ import com.epam.telegramclient.web.client.GameServiceCLient;
 import com.epam.telegramclient.web.dto.Platform;
 import com.epam.telegramclient.web.dto.Response;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.List;
 
@@ -29,13 +31,15 @@ public class PlatformsMessageCommand implements Command {
     private final int platformsButtonsPerRow;
 
     @Override
+    @InputMethodLog
+    @OutputMethodLog
     public boolean isApplicableFor(Request request) {
         return "Platforms".equalsIgnoreCase(request.command());
     }
 
     @Override
-    @SneakyThrows
-    public void process(TelegramLongPollingBot bot, Request request) {
+    @InputMethodLog
+    public void process(TelegramLongPollingBot bot, Request request) throws TelegramApiException {
         SendMessage response = new SendMessage(request.chatId().toString(), "Platforms");
         InlineKeyboardMarkup markup = Markup.builder()
                 .withButtons(creatButtonRows())
