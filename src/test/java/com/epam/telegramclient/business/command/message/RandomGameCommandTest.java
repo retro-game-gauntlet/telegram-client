@@ -1,6 +1,7 @@
 package com.epam.telegramclient.business.command.message;
 
 import com.epam.telegramclient.business.domain.Request;
+import com.epam.telegramclient.business.event.events.RandomGameSent;
 import com.epam.telegramclient.tags.Junit;
 import com.epam.telegramclient.web.client.GameServiceCLient;
 import org.junit.jupiter.api.Test;
@@ -8,12 +9,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.context.ApplicationEventPublisher;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import static com.epam.telegramclient.factories.GameResponseFactory.defaultGameResponse;
 import static com.epam.telegramclient.factories.SendMessageFactory.defaultMarioSendMessage;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -28,6 +31,8 @@ class RandomGameCommandTest {
     private GameServiceCLient gameServiceCLient;
     @Mock
     private TelegramLongPollingBot bot;
+    @Mock
+    private ApplicationEventPublisher eventPublisher;
 
     @Test
     void shouldBeApplicableForRandomGamesRequest() {
@@ -55,5 +60,6 @@ class RandomGameCommandTest {
         command.process(bot, request);
 
         verify(bot).execute(defaultMarioSendMessage());
+        verify(eventPublisher).publishEvent(any(RandomGameSent.class));
     }
 }

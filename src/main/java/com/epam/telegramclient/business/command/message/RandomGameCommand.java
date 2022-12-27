@@ -2,10 +2,12 @@ package com.epam.telegramclient.business.command.message;
 
 import com.epam.telegramclient.business.command.Command;
 import com.epam.telegramclient.business.domain.Request;
+import com.epam.telegramclient.business.event.events.RandomGameSent;
 import com.epam.telegramclient.web.client.GameServiceCLient;
 import com.epam.telegramclient.web.dto.Game;
 import com.epam.telegramclient.web.dto.Response;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -22,6 +24,7 @@ public class RandomGameCommand implements Command {
 
     private final GameServiceCLient gameServiceCLient;
     private final Pattern commandPattern = Pattern.compile("Random game for .*");
+    private final ApplicationEventPublisher eventPublisher;
 
     @Override
     public boolean isApplicableFor(Request request) {
@@ -38,5 +41,6 @@ public class RandomGameCommand implements Command {
         Game game = response.data().attributes();
         SendMessage message = new SendMessage(chatId.toString(), game.name());
         bot.execute(message);
+        eventPublisher.publishEvent(new RandomGameSent(this, game.name()));
     }
 }
