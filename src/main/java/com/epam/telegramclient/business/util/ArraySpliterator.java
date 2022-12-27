@@ -13,7 +13,8 @@ public class ArraySpliterator<T> {
 
     private final int piecesSize;
 
-    public List<List<T>> split(T... items) {
+    @SafeVarargs
+    public final List<List<T>> split(T... items) {
         List<T> list = Arrays.stream(items).toList();
 
         List<List<T>> result = new ArrayList<>();
