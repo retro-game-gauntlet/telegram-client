@@ -40,7 +40,7 @@ class PlatformsMessageCommandTest {
 
     @Test
     void shouldBeApplicableForPlatformsRequest() {
-        Request request = new Request(123L, "/platforms");
+        Request request = new Request(123L, "Platforms");
 
         boolean isApplicableFor = command.isApplicableFor(request);
 
@@ -59,9 +59,9 @@ class PlatformsMessageCommandTest {
     @Test
     void shouldExecuteResponseWithNesButton() throws TelegramApiException {
         when(gameServiceCLient.getPlatforms()).thenReturn(defaultPlatformsResponse());
-        when(inlineButtonBuilder.build("NES", "/platforms/NES/games/random")).thenReturn(defaultButton());
+        when(inlineButtonBuilder.build("NES", "Random game for NES")).thenReturn(defaultButton());
 
-        Request request = new Request(123L, "/platforms");
+        Request request = new Request(123L, "Platforms");
         command.process(bot, request);
 
         verify(bot).execute(defaultPlatformsSendMessage());

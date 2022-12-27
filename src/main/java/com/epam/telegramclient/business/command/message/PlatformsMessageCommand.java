@@ -18,7 +18,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import java.util.List;
 
 /**
- * Command which response for '/platforms' request
+ * Command which response for 'Platforms' request
  */
 @Component
 @RequiredArgsConstructor
@@ -30,7 +30,7 @@ public class PlatformsMessageCommand implements Command {
 
     @Override
     public boolean isApplicableFor(Request request) {
-        return "/platforms".equalsIgnoreCase(request.command());
+        return "Platforms".equalsIgnoreCase(request.command());
     }
 
     @Override
@@ -56,6 +56,6 @@ public class PlatformsMessageCommand implements Command {
     }
 
     private InlineKeyboardButton createButton(Platform platform) {
-        return inlineButtonBuilder.build(platform.code(), "/platforms/" + platform.code() + "/games/random");
+        return inlineButtonBuilder.build(platform.code(), "Random game for " + platform.code());
     }
 }

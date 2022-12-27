@@ -31,7 +31,7 @@ class RandomGameCommandTest {
 
     @Test
     void shouldBeApplicableForRandomGamesRequest() {
-        Request request = new Request(123L, "/platforms/NES/games/random");
+        Request request = new Request(123L, "Random game for NES");
 
         boolean isApplicableFor = command.isApplicableFor(request);
 
@@ -50,7 +50,7 @@ class RandomGameCommandTest {
     @Test
     void shouldProcessRandomCommand() throws TelegramApiException {
         when(gameServiceCLient.getRandomGame("NES")).thenReturn(defaultGameResponse());
-        Request request = new Request(123L, "/platforms/NES/games/random");
+        Request request = new Request(123L, "Random game for NES");
 
         command.process(bot, request);
 

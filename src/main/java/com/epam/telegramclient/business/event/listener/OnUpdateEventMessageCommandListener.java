@@ -26,9 +26,7 @@ public class OnUpdateEventMessageCommandListener implements ApplicationListener<
     public void onApplicationEvent(@NonNull UpdateEvent event) {
         Update update = event.getUpdate();
         Request request = requestResolvers.resolve(update);
-        if (request.command().startsWith("/")) {
-            process(event.getBot(), request);
-        }
+        process(event.getBot(), request);
     }
 
     private void process(TelegramLongPollingBot bot, Request request) {

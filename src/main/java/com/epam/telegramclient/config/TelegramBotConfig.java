@@ -34,7 +34,6 @@ public class TelegramBotConfig {
     public String botToken() {
         return botToken;
     }
-
     @Bean
     public String welcomeMessage() {
         return welcomeMessage;

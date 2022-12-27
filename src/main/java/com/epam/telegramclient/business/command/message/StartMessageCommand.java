@@ -6,7 +6,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -21,7 +26,17 @@ public class StartMessageCommand implements Command {
 
     @Override
     public void process(TelegramLongPollingBot bot, Request request) throws TelegramApiException {
+        ReplyKeyboardMarkup markup = buildMarkup();
         SendMessage response = new SendMessage(request.chatId().toString(), welcomeMessage);
+        response.setReplyMarkup(markup);
         bot.execute(response);
+    }
+
+    private ReplyKeyboardMarkup buildMarkup() {
+        KeyboardButton button = new KeyboardButton("Platforms");
+        KeyboardRow row = new KeyboardRow(List.of(button));
+        ReplyKeyboardMarkup markup = new ReplyKeyboardMarkup(List.of(row));
+        markup.setResizeKeyboard(true);
+        return markup;
     }
 }

@@ -14,7 +14,6 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import static com.epam.telegramclient.factories.DefaultRequest.defaultRequest;
-import static com.epam.telegramclient.factories.DefaultRequest.helloRequest;
 import static com.epam.telegramclient.factories.UpdateFactory.defaultUpdate;
 import static org.mockito.Mockito.*;
 
@@ -43,15 +42,5 @@ class OnUpdateEventMessageCommandListenerTest {
         listener.onApplicationEvent(event);
 
         verify(command).process(bot, defaultRequest());
-    }
-
-    @Test
-    void shouldNotExecuteCommandWhenMessageIsNotCommand() throws TelegramApiException {
-        UpdateEvent event = new UpdateEvent(bot, defaultUpdate());
-        when(requestResolvers.resolve(defaultUpdate())).thenReturn(helloRequest());
-
-        listener.onApplicationEvent(event);
-
-        verify(command, never()).process(any(), any());
     }
 }

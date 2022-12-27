@@ -14,14 +14,14 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.util.regex.Pattern;
 
 /**
- * Command which response for '/platforms/{platformCode}/games/random' request
+ * Command which response for 'Random game for {platformCode}' request
  */
 @Component
 @RequiredArgsConstructor
 public class RandomGameCommand implements Command {
 
     private final GameServiceCLient gameServiceCLient;
-    private final Pattern commandPattern = Pattern.compile("/platforms/.*/games/random");
+    private final Pattern commandPattern = Pattern.compile("Random game for .*");
 
     @Override
     public boolean isApplicableFor(Request request) {
@@ -32,8 +32,8 @@ public class RandomGameCommand implements Command {
     public void process(TelegramLongPollingBot bot, Request request) throws TelegramApiException {
         Long chatId = request.chatId();
         String command = request.command();
-        String[] parts = command.split("/");
-        String platformCode = parts[2];
+        String[] parts = command.split(" ");
+        String platformCode = parts[3];
         Response<Game> response = gameServiceCLient.getRandomGame(platformCode);
         Game game = response.data().attributes();
         SendMessage message = new SendMessage(chatId.toString(), game.name());
